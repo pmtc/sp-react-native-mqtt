@@ -57,7 +57,7 @@ public class RCTMqtt implements MqttCallbackExtended {
         defaultOptions.putInt("port", 1883);
         defaultOptions.putString("protocol", "tcp");
         defaultOptions.putBoolean("tls", false);
-        defaultOptions.putInt("keepalive", 60);
+        defaultOptions.putInt("keepalive", 120);
         defaultOptions.putString("clientId", "react-native-mqtt");
         defaultOptions.putInt("protocolLevel", 4);
         defaultOptions.putBoolean("clean", true);
@@ -146,6 +146,7 @@ public class RCTMqtt implements MqttCallbackExtended {
         mqttOptions.setKeepAliveInterval(options.getInt("keepalive"));
         mqttOptions.setMaxInflight(1000);
         mqttOptions.setConnectionTimeout(10);
+        mqttOptions.setCleanSession(options.getBoolean("clean"));
 
         StringBuilder uri = new StringBuilder("tcp://");
         if (options.getBoolean("tls")) {
